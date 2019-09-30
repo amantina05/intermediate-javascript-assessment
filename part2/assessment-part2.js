@@ -44,9 +44,15 @@ function noWeakLink() {
     url: '/api/users'
   })
   // CODE HERE...
+  .then(function(res){
+    firstUser = res.data[0];
+    return res;
+  }).then(function(res){
+    thirdUser = res.data[2];
+    return res.data[9];
+  })
 
 }
-
 
 
 // *************
@@ -74,8 +80,7 @@ function large() {
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
 // CODE HERE...
-
-
+boundToElephant = large.bind(elephant)
 
 // *************
 // * PROBLEM 3 *
@@ -88,8 +93,10 @@ function large() {
 // and return the bound function.
 
 // CODE HERE...
-
-
+function deathStar (capacity, crew) {
+  // console.log(capacity.bind(crew))
+  return capacity.bind(crew)
+}
 
 // *************
 // * PROBLEM 4 *
@@ -103,8 +110,11 @@ function large() {
 // The closure function will return the combined value of assets and liabilities.
 
 // CODE HERE...
-
-
+function accountingOffice (assets) {
+  return function (libalities) {
+    return assets + libalities
+  }
+}
 
 // *************
 // * PROBLEM 5 *
@@ -128,8 +138,18 @@ function large() {
 // };
 
 // CODE HERE...
-
-
+function forgetter (name) {
+  let arr = []
+  return function (item) {
+    arr.push(item)
+    //returns the object
+    return {
+      //contains name & array
+      name: name,
+      remember: arr
+    }
+  }
+}
 
 // *************
 // * PROBLEM 6 *
@@ -156,3 +176,33 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+
+// function frodo (num1, num2) {
+//   return {
+//     dinnerOverFire: function () {
+//       this.num1 -= 25
+//       this.num2 += 40
+//       return {`hunger: ${this.num1},
+//       danger: ${this.num2}`}
+//     },
+//     hidingInBush: function () {
+//       this.num1 += 35
+//       this.num2 -= 20
+//       return {`hunger: ${this.num1},
+//       danger: ${this.num2}`}
+//     }
+//   }
+// }
+var frodo = function(startingHungerValue, startingDangerValue){
+  return {
+    dinnerOverFire: function(){
+      return {hunger: startingHungerValue = startingHungerValue <= 25 ? 0:startingHungerValue - 25,
+              danger: startingDangerValue = startingDangerValue >= 60 ? 100:startingDangerValue + 40}
+    },
+    hidingInBush: function(){
+      return {hunger: startingHungerValue = startingHungerValue >= 65 ? 100:startingHungerValue + 35,
+              danger: startingDangerValue = startingDangerValue <= 20 ? 0:startingDangerValue - 20}
+      //return {hunger:startingHungerValue, danger:startingDangerValue}
+    }
+  }
+}
