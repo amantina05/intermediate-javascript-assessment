@@ -13,8 +13,19 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
-
-
+function callBinding (arr, func, num) {
+return func.call(arr.filter(x => {x.num == num})[0], 'Trogdor')
+}
+//?
+// function callBinding (arr, func, num) {
+//   return func.call(
+//     arr.filter(x => {
+//       if (x.num == num && x.num == [0]) {
+//         return 'Trogdor'
+//       }
+//     })
+//   )
+// }
 
 // *************
 // * PROBLEM 2 *
@@ -29,7 +40,17 @@
 
 // CODE HERE...
 
-
+var applyBinding = function(arr, func, id){
+  return func.apply(arr.filter(x => {return x.id == id})[0], ['being majestic', 'eating rainbows']);
+}
+//??
+// function applyBinding (arr, func, id) {
+//   return func.filter(x => {
+//     if (x.id == id) {
+//       return ['being majestic', 'eating rainbows']
+//     }
+//   })
+// }
 
 // *************
 // * PROBLEM 3 *
@@ -48,8 +69,14 @@
 var foo;
 
 // CODE HERE...
-
-
+// function promiseMe($q) {
+//   return new Promise(function(res){
+//     setTimeout(function(){
+//       foo = 'bar';
+//       res(foo);
+//     }, 20)
+//   })
+// }
 
 // *************
 // * PROBLEM 4 *
@@ -64,3 +91,13 @@ var foo;
 // and then resolve the array as you complete your promise.
 
 // CODE HERE...
+
+// var emailList = function($q, $http){
+//   var a = [];
+//   return new Promise(function(res){
+//     $http.get('/api/users').then(function(r){
+//       a = r.data.map(x => {return x.email});
+//       res(a);
+//     })
+//   })
+// }
